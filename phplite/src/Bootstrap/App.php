@@ -2,7 +2,11 @@
 namespace Phplite\Bootstrap;
 
 
+use Phplite\Cookie\Cookie;
 use Phplite\Exceptions\Whoops;
+use Phplite\Http\Request;
+use Phplite\Http\Server;
+use Phplite\Session\Session;
 
 /**
  * Class App
@@ -24,9 +28,20 @@ class App
       * @return void
      */
      public static function run() {
+
+          // Register whoops
           Whoops::handle();
 
-          throw new \Exception('The is exception');
+
+          // Start a session
+          Session::start();
+
+
+          // Handle the request
+          Request::handle();
+
+
+          echo Request::method();
      }
 
 }
